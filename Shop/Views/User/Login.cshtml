@@ -1,0 +1,93 @@
+﻿@model Shop.Models.LoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="/Assets/Client/css/bootstrap.css" rel="stylesheet" />
+    <link href="/Assets/Client/css/boostrap-social.css" rel="stylesheet" />
+    <link href="/Assets/Client/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/Assets/Client/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="/Assets/Client/css/jquery-ui.css" rel="stylesheet" />
+    <link href="/Assets/Client/css/popuplogin.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="/Assets/Client/js/jquery-1.11.3.min.js"></script>
+    <script src="/Assets/Client/js/jquery-ui.js"></script>
+    <script src="/Assets/Client/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Client/js/fontpopuplogin.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>Login Form</header>
+        @using (Html.BeginForm("Login", "User", FormMethod.Post))
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2"></label>
+                <div class="col-md-10">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="input-field">
+                @Html.TextBoxFor(model => model.UserName)
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.UserName)
+
+            </div>
+
+           
+            <div class="input-field">
+                @Html.TextBoxFor(model => model.Password, new { @class = "pswrd", @type = "password" })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.Password)
+                <span class="show">SHOW</span>
+
+            </div>
+            <div class="button">
+                <div class="inner">
+                </div>
+                <button>LOGIN</button>
+            </div>
+
+            <div class="auth">
+                Or login with
+            </div>
+            <div class="links">
+                <div class="facebook">
+                    <a href="/User/LoginFacebook"><i class="fab fa-facebook-square"><span>Facebook</span></i></a>
+                </div>
+                <div class="google">
+                    <i class="fab fa-google-plus-square"><span>Google</span></i>
+                </div>
+            </div>
+            <div class="signup">
+                Not a member? <a href="#">Signup now</a>
+            </div>
+        }
+    </div>
+    <script type="text/javascript">
+        var input = document.querySelector('.pswrd');
+        var show = document.querySelector('.show');
+        show.addEventListener('click', active);
+        function active() {
+            if (input.type === "password") {
+                input.type = "text";
+                show.style.color = "#1DA1F2";
+                show.textContent = "HIDE";
+            } else {
+                input.type = "password";
+                show.textContent = "SHOW";
+                show.style.color = "#111";
+            }
+        }
+    </script>
+</body>
+</html>
